@@ -10,3 +10,11 @@ def test_neighbours_pbc():
     N,M=3,4
     config = ising2D.start_config(N,M)                
     assert (ising2D.grab_neighbors(N-1,M-1,config) == np.array([config[N-2,M-1],config[0,M-1],config[N-1,0],config[N-1,M-2]])).all() 
+
+def test_Denergy():
+    N,M=3,4
+    config_old = np.ones(N*M).reshape((N,M))
+    config_new = config_old.copy()
+    config_new[2,2]=0
+    J=0.324
+    assert ising2D.Denergy(2,2,config_old,J) == -8*J

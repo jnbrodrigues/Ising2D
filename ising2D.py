@@ -19,4 +19,9 @@ def grab_neighbors(i,j,config):
     return np.array([config[top[0],top[1]],config[bottom[0],bottom[1]],config[right[0],right[1]],config[left[0],left[1]]])
 
 
+def Denergy(i,j,config,J):
+    print(config)
+    s1 = config[i,j]*2-1
+    s2 = grab_neighbors(i,j,config)*2-1
     
+    return (-2*s1*s2*J).sum() 
